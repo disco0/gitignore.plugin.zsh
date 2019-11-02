@@ -48,6 +48,19 @@ function _gitignore_template() {
     return 1;
 }
 
+function _gitignore_target_file() {
+    local target='.gitignore';
+
+    if [[ "$1" == '--global' || "$1" == '-g' ]]; then
+        if ! local target="$(git config --global core.excludesfile 2>/dev/null)"; then
+            echo '\e[31mGlobal gitignore is not configured.\e[0m' >&2;
+            return 1;
+        fi
+    fi
+
+    echo "$target";
+}
+
 _gitignore_get_template_list() {
     (for tpath in ${(@s/:/)ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS}; do; command find "$tpath" -type f -name "*.gitignore"; done) \
         | command xargs -n 1 basename \
