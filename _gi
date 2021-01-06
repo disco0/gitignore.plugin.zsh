@@ -1,0 +1,24 @@
+#compdef gi gii
+
+# Completions for gi{,i} moved to separate file for better zinit integration
+
+(( $+functions[_gitignore_get_template_list] )) ||
+_gitignore_get_template_list() 
+{
+    builtin emulate zsh -L
+    local -a template_basenames=( )
+
+    foreach tpath ( ${(@s/:/)ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS} )
+        template_basenames+=( $tpath/**/*.gitignore(N-.:t:r:l:on) )
+    end
+    
+    builtin print -l -- $template_basenames
+}
+
+_gitignore()
+{
+    compset -P '*,'
+    compadd -S '' `_gitignore_get_template_list`
+}
+
+_gitignore ${(@)^@}
