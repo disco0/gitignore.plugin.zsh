@@ -5,37 +5,57 @@ Zsh plugin for creating `.gitignore` files.
 Installation
 ------------
 
+[zinit](https://github.com/zdharma/zinit):
+
+``` sh
+zinit atpull'zinit creinstall $PWD' atclone'%atpull' for voronkovich/gitignore.plugin.zsh
+```
+
 [Antigen](https://github.com/zsh-users/antigen):
 
-        antigen bundle voronkovich/gitignore.plugin.zsh
+``` sh
+antigen bundle voronkovich/gitignore.plugin.zsh
+```
 
 [Zplug](https://github.com/zplug/zplug):
 
-        zplug voronkovich/gitignore.plugin.zsh
+``` sh
+zplug voronkovich/gitignore.plugin.zsh
+```
 
 Or clone this repo and add this into your .zshrc:
 
-        source path/to/cloned/repo/gitignore.plugin.zsh
+``` sh
+source path/to/cloned/repo/gitignore.plugin.zsh
+```
 
 Usage
 -----
 
-        gi TEMPLATE (will write rules to the standard output)
+``` sh
+gi TEMPLATE # (will write rules to the standard output)
+```
 
 Or:
 
-        gii TEMPLATE (will write output to the local .gitignore file)
+``` sh
+gii TEMPLATE # (will write output to the local .gitignore file)
+```
 
 Example:
 
-        gi vim eclipse symfony
+``` sh
+gi vim eclipse symfony
+```
 
 Custom templates
 ----------------
 
 If you want to override an existing template or add your own custom one, you can use an environment variable `ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS` (it behaves like the `$PATH` variable):
 
-        export ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS="$HOME/.gitignore_teplates:$ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS:/etc/global_gitignore"
+``` sh
+export ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS="$HOME/.gitignore_teplates:$ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS:/etc/global_gitignore"
+```
 
 Updating templates
 ------------------

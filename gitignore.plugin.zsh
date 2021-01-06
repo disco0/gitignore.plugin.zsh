@@ -47,19 +47,3 @@ function _gitignore_template() {
 
     return 1;
 }
-
-_gitignore_get_template_list() {
-    (for tpath in ${(@s/:/)ZSH_PLUGIN_GITIGNORE_TEMPLATE_PATHS}; do; command find "$tpath" -type f -name "*.gitignore"; done) \
-        | command xargs -n 1 basename \
-        | command sed -e 's/.gitignore$//' \
-        | command tr '[:upper:]' '[:lower:]' \
-        | command sort -u
-}
-
-_gitignore () {
-  compset -P '*,'
-  compadd -S '' `_gitignore_get_template_list`
-}
-
-compdef _gitignore gi
-compdef _gitignore gii
